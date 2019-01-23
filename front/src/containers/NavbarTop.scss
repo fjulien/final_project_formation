@@ -1,0 +1,20 @@
+.NavbarTop{ 
+  .navBar{
+    background-color: #fecc00;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
+  .link_navbar{
+    color: black;
+  }
+  .button_navbar{
+    background-color: transparent;
+    border: none;
+    color: black;
+  }
+  .button_navbar:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
