@@ -64,7 +64,7 @@ Example:
 
 - 5 . And to finish, in your navigator,  go to *http://localhost:3000/*  to see the web project.
 
-## Team beepolar to wild code school
+## Team
 
 - Fettinger Julien
 
