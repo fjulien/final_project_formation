@@ -18,7 +18,7 @@ Open the PDF document called "Final checkpoint - JS" to see instructions.
 
 ### Rest api initialization
 
-1 . Go to the back folder .
+- 1 . Go to the back folder .
 
 - 2 . Add new file *conf.js* in /back/routes/conf.js with your settings.
 
@@ -36,12 +36,13 @@ const connection = mysql.createConnection({
 export default connection;
 
 ```
+- 3 . Add new folder *images* in /back/routes/movies/images.
 
-- 3 . Dependencies installation  npm:
+- 4 . Dependencies installation  npm:
 
 `$ npm install`
 
-- 4 . Start the api:
+- 5 . Start the api:
 
 `$ npm start`
 
