@@ -1,4 +1,4 @@
-export const url ="http://localhost:4000/api/cinewild";
+import { url } from '../constants';
 
 export const moviesSearch = resultMovie => ({
   type: 'MOVIES_FIND',

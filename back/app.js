@@ -4,6 +4,7 @@ import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
 import path from 'path';
+
 // import favicon from 'serve-favicon';
 
 import login from './routes/users/login';
@@ -13,6 +14,7 @@ import movies from './routes/movies/movies';
 const app = express();
 const debug = Debug('back:app');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
+app.use(fileUpload());
 
 app.use(cors());
 

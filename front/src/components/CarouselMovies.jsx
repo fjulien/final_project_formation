@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { url } from '../constants';
 import { Carousel } from 'react-responsive-carousel';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -24,7 +25,7 @@ class CarouselMovies extends Component {
       {(images.length !== 0)?
         images.map(element => 
         <div>
-          <img className="poster_movie" src={element.picture} alt="Picture to movie" />
+          <img className="poster_movie" src={element.picture === null ? `${url}/movies/images/${element.imageFileName}` : element.picture } alt="Picture to movie" />
 
         </div>
         ):

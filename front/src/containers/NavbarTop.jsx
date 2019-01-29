@@ -11,7 +11,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
 } from 'reactstrap';
 
 import "./NavbarTop.scss";

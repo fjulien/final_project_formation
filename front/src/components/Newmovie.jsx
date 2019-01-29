@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import { url } from '../actions/fetch';
+import { url } from '../constants';
 import {
   Button,
   Modal,
@@ -11,6 +11,7 @@ import {
   Label,
   Input,
   Alert,
+  FormText,
 } from 'reactstrap';
 
 import "./Newmovie.scss";
@@ -24,11 +25,13 @@ class Newmovie extends Component {
       title: '',
       descript: '',
       url: '',
+      imageFile: null,
     };
     this.toggle = this.toggle.bind(this);
     this.sendNewUser = this.sendNewUser.bind(this);
     this.onChangeForm = this.onChangeForm.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.handleselectedFile = this.handleselectedFile.bind(this);
   }
 
   onChangeForm(event) {
@@ -52,26 +55,43 @@ class Newmovie extends Component {
       title,
       descript,
       picture,
+      imageFile,
     } = this.state;
     if (title !== '' && descript !== '' && picture !== '') {
+      const formData = new FormData();
+      formData.append('file', imageFile);
       const dataSend = {
+        imageFileName: imageFile.name,
         title,
         descript,
         picture,
+      };
+      const confFile = {
+        method: 'POST',
+        body: formData
       };
       const conf = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataSend),
+        body: JSON.stringify(dataSend)
       };
-      fetch(`${url}/movies`, conf)
+      fetch(`${url}/movies/upload`, confFile)
+      .then(()=>{
+        fetch(`${url}/movies/`, conf)
+      })
         .then(() => this.toggle())
         .catch(() => this.onDismiss());
     } else {
       this.onDismiss()
     }
+  }
+
+  handleselectedFile(event) {
+    this.setState({
+      imageFile: event.target.files[0],
+    })
   }
 
   render() {
@@ -102,10 +122,17 @@ class Newmovie extends Component {
                 <Label htmlFor="picture">Picture Url</Label>
                 <Input type="url" onChange={this.onChangeForm} value={picture} name="picture" id="picture" placeholder="http://localhost:1988" />
               </FormGroup>
+              <FormGroup>
+                <Label for="exampleFile">Image</Label>
+                <Input action="uploaddufichier" enctype="multipart/form-data" type="file" name="imageFile" id="imageFile" onChange={this.handleselectedFile} />
+                <FormText color="muted">
+                  Picture for your movie.
+                </FormText>
+              </FormGroup>
             </ModalBody>
             <Alert color="danger" isOpen={visible} toggle={this.onDismiss}>
               Formuaire is emply !
-      </Alert>
+            </Alert>
             <ModalFooter>
               <Button color="secondary" onClick={() => history.goBack()}>Back</Button>
               <Button color="primary" type="submit" >Send</Button>

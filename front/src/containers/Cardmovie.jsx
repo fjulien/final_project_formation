@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import { url } from '../actions/fetch';
+import { url } from '../constants';
 import { withRouter } from 'react-router-dom';
 import EditContent from '../components/EditContent';
 import { connect } from 'react-redux';
@@ -22,6 +22,7 @@ class Cardmovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      imageFileName: '',
       title: '',
       descript: '',
       picture: '',
@@ -35,8 +36,9 @@ class Cardmovie extends Component {
   }
 
   componentDidMount() {
-    const { title, descript, picture, likes } = this.props.movie;
+    const { title, descript, picture, likes, imageFileName } = this.props.movie;
     this.setState({
+      imageFileName,
       likes,
       title,
       descript,
@@ -107,24 +109,24 @@ class Cardmovie extends Component {
   }
 
   render() {
-    const { title, descript, picture, likes } = this.state;
+    const { title, descript, picture, likes, imageFileName } = this.state;
     const { edit } = this.props;
     return (
       <div className="Cardmovie">
         <Card>
-          <CardImg top width="100%" src={picture} alt="Card image cap" />
+          <CardImg top width="100%" src={picture === null ? `${url}/movies/images/${imageFileName}` : picture } alt="Card image cap" />
           <CardBody>
             <EditContent
               title="title"
               editContent={title}
-              content={<CardTitle><h3>{title.length < 17 ? title : `${title.slice(0, 13)} ... ` }</h3></CardTitle>}
+              content={<CardTitle><h3>{title.length < 17 ? title : `${title.slice(0, 13)} ... `}</h3></CardTitle>}
               onChange={this.onChangeEdit}
               bolleanToEdit={edit}
             />
             <EditContent
               title="descript"
               editContent={descript}
-              content={<CardText className="descrit_card">{descript.length < 175? descript : `${descript.slice(0, 171)} ... ` }</CardText>}
+              content={<CardText className="descrit_card">{descript.length < 175 ? descript : `${descript.slice(0, 171)} ... `}</CardText>}
               onChange={this.onChangeEdit}
               bolleanToEdit={edit}
             />
@@ -135,7 +137,7 @@ class Cardmovie extends Component {
               onChange={this.onChangeEdit}
               bolleanToEdit={edit}
             />
-              {edit ?
+            {edit ?
               <Row>
                 <Col xs='6'>
                   <Button onClick={() => this.sendEdit()} color='success'>Submit</Button>
@@ -151,7 +153,7 @@ class Cardmovie extends Component {
                 <Col xs='6'>
                   <Button color='warning' onClick={() => this.addLike()}>Like</Button>
                 </Col>
-                </Row>
+              </Row>
             }
           </CardBody>
         </Card>

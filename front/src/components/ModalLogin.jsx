@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
-import { url } from '../actions/fetch';
+import { url } from '../constants';
 import {
   Button,
   Modal,

@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/', (req, res) => {
   set.query('INSERT INTO _Users SET ? ', req.body, (err) => {
     if (err) {
-      console.log(err);
+      console.error(err);
     } else {
       res.sendStatus(200);
     }

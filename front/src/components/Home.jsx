@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { url } from '../actions/fetch';
+import { url } from '../constants';
 import CarouselMovies from "../components/CarouselMovies";
 import Searchbar from "../containers/Searchbar";
 import Listemovie from "../containers/Listemovie";
@@ -11,7 +11,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: []
+      images: [],
+      test: '',
     };
   }
 
@@ -22,9 +23,10 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.state.test)
     const { images } = this.state;
     return (
-      <div className="Home">
+      <div className="Home"> 
         <CarouselMovies images={images} />
         <Searchbar />
         <Listemovie />

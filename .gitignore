@@ -25,3 +25,4 @@ yarn-error.log*
 
 /front/package-lock.json
 /back/routes/settingSql.js
+/back/routes/movies/images
