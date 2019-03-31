@@ -10,7 +10,7 @@ Open the PDF document called "Final checkpoint - JS" to see instructions.
 
 - 3 . Clone it in your computer :
 
-`$ git clone https://github.com/[your_profile_github]/bordeaux-0918-js-hiventive.git`
+`$ git clone https://github.com/[your_profile_github]/final_project_formation.git`
 
 ### SQL initialization
 
